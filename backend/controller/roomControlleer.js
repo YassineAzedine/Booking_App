@@ -104,10 +104,10 @@ async function CreateRoom(req ,res){
       
     try{
        const room =  await  Room.create(req.body)
-   res.status(200).send({"message" : "Room Find with success" , data : room})
+       res.status(200).send({"message" : "Room Find with success" , data : room})
 
     }catch(error){
-        console.log(error)
+       console.log(error)
     }
 }
 async function UpdateRoom(req ,res){
@@ -115,8 +115,9 @@ async function UpdateRoom(req ,res){
         name : req.body.name , 
         description : req.body.description
        }
+       console.log(req.body)
     try{
-        const room =  await  Room.findOneAndUpdate({_id : req.params.id},roomupdated)
+        const room =  await  Room.findOneAndUpdate({_id : req.params.id},req.body)
         if(!room){
             return res.status(404).send({"message" : "room not found" })
            }

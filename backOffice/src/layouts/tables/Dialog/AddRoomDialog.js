@@ -10,7 +10,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import api from '../../../api/api';
-
+import { uploadImageToCloudinary } from 'utiles/uploadImageToCloudinary';
 const AddRoomDialog = ({open ,setOpen}) => {
 
     
@@ -24,14 +24,26 @@ const AddRoomDialog = ({open ,setOpen}) => {
       };
       
 
-  const [hotelName, sethotelName] = useState('');
-  const [price, setPrice] = useState(hotelData.pricePerNight);
+  const [hotelName, sethotelName] = useState('66f2924f97508e59ca216032');
+  const [pricePerNight, setPrice] = useState(hotelData.pricePerNight);
   const [bedCount, setBedCount] = useState(hotelData.bedCount);
   const [bathroomCount, setBathroomCount] = useState(hotelData.bathroomCount);
   const [maxOccupancy, setMaxOccupancy] = useState(hotelData.maxOccupancy);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const file = event.target.files[0];
+    
+    if (!file.type.startsWith('image/')) {
+      alert('Please select a valid image file');
+      return;
+    }
+  
+    if (file.size > 5 * 1024 * 1024) { // 5MB limit
+      alert('File size exceeds the 5MB limit');
+      return;
+    }
+  
+    setImageFile(file);
   };
   const handleClickOpen = () => {
     setOpen(true);
@@ -41,29 +53,29 @@ const AddRoomDialog = ({open ,setOpen}) => {
     setOpen(false);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle room addition logic here
-    console.log('data',{
-      hotelName,
-      price,
-      bedCount,
-      bathroomCount,
-      maxOccupancy,
-      selectedFile  
-    });
-    api.post('rooms',{
+  
+    try {
+      // Step 1: Upload the image
+      const uploadedImageUrl = await uploadImageToCloudinary(imageFile);
+  
+      // Step 2: Submit the room data along with the image URL
+      const roomData = {
         hotelName,
-        price,
+        pricePerNight,
         bedCount,
         bathroomCount,
         maxOccupancy,
-        selectedFile  
-      })
-    .then(response => setRooms(response.data.data))
-    .catch(error => console.error(error));
-    // Close dialog after submission
-    handleClose();
+        imageUrl: uploadedImageUrl, // Use the Cloudinary image URL
+      };
+  
+      const response = await api.post('rooms', roomData);
+      console.log('Room added successfully', response.data);
+      handleClose();
+    } catch (error) {
+      console.error('Error adding the room', error);
+    }
   };
 
   return (
@@ -92,10 +104,10 @@ const AddRoomDialog = ({open ,setOpen}) => {
                 <TextField
                   margin="normal"
                   required
-                  label="Price"
+                  label="Price Per Night"
                   type="number"
                   fullWidth
-                  value={price}
+                  value={pricePerNight}
                   onChange={(e) => setPrice(e.target.value)}
                 />
                 <TextField
@@ -139,9 +151,9 @@ const AddRoomDialog = ({open ,setOpen}) => {
               Choose File
             </Button>
           </label>
-          {selectedFile && (
+          {imageFile && (
             <Typography variant="body2"  color="white" sx={{ mt: 2 }}>
-              Selected File: {selectedFile.name}
+              Selected File: {imageFile.name}
             </Typography>
           )}
         </DialogContent>

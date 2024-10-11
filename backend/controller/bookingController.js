@@ -11,13 +11,11 @@ async function CreateBooking(req ,res){
         return res.status(400).send({ message: "Invalid room ID" });
       }
     const room = await Room.findOne({_id : req.body.room})
-
-
     if(!room){
         return res.status(404).send({message  : "room not found"})
     }
     const newBooking  = {
-        Date_started : req.body.Date_started ,
+        Date_started : req.body.Date_started ,  
         Date_end : req.body.Date_end ,
         room  : req.body.room , 
         user : req.user_id
