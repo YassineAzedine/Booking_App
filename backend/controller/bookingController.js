@@ -14,6 +14,8 @@ async function CreateBooking(req ,res){
     if(!room){
         return res.status(404).send({message  : "room not found"})
     }
+      await Room.findOneAndUpdate({_id :room._id },{ $set: { isAvailable: false }})
+
     const newBooking  = {
         Date_started : req.body.Date_started ,  
         Date_end : req.body.Date_end ,

@@ -26,7 +26,19 @@ import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import api from "../../../api/api"
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete"
 export default function data() {
+  // Add edit and delete functionality (replace this with your actual logic)
+const handleEdit = (roomId) => {
+  console.log(`Edit room with ID: ${roomId}`);
+};
+
+const handleDelete = (roomId) => {
+  console.log(`Delete room with ID: ${roomId}`);
+};
   const [ rooms , setRooms]  = useState([])
   console.log(rooms) 
   useEffect(() => {
@@ -71,6 +83,21 @@ export default function data() {
       { Header: "bathroomCount", accessor: "bathroomCount", align: "center" },
       { Header: "maxOccupancy", accessor: "maxOccupancy", align: "center" },
       { Header: "isAvailable", accessor: "isAvailable", align: "center" },
+      {
+        Header: "Actions", 
+        accessor: "actions", 
+        align: "center", 
+        Cell: ({ row }) => (
+          <>
+            <IconButton onClick={() => handleEdit(row.original._id)} color="primary">
+              <EditIcon />
+            </IconButton>
+            <IconButton onClick={() => handleDelete(row.original._id)} color="secondary">
+              <DeleteIcon />
+            </IconButton>
+          </>
+        ),
+      },
     ],
     rows: rooms
   };
