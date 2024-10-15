@@ -45,7 +45,7 @@ console.log("room" , room)
         address: data.address,
         Date_started: data.Date_started,
         Date_end: data.Date_end,
-        room: '66f3de8182a8169cfdbb6e20',
+        room: id,
         paymentInfo: {
           creditCardNumber: data.paymentInfo.creditCardNumber,
           expirationDate: data.paymentInfo.expirationDate,

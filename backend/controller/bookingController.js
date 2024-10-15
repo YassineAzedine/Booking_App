@@ -17,11 +17,20 @@ async function CreateBooking(req ,res){
       await Room.findOneAndUpdate({_id :room._id },{ $set: { isAvailable: false }})
 
     const newBooking  = {
-        Date_started : req.body.Date_started ,  
-        Date_end : req.body.Date_end ,
+        name: req.body.name,
+        email : req.body.email , 
+        address : req.body.address , 
+        Date_started : req.body.Date_started,  
+        Date_end : req.body.Date_end,
         room  : req.body.room , 
-        user : req.user_id
+        user : req.user_id , 
+        paymentInfo : {
+            creditCardNumber : req.body.paymentInfo.creditCardNumber ,
+            expirationDate : req.body.paymentInfo.expirationDate , 
+            cvv :  req.body.paymentInfo.cvv
+        }
     } 
+
     const booking = await Booking.create(newBooking)
 
     
