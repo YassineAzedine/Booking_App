@@ -32,7 +32,7 @@ function header() {
   <nav className="navbar navbar-expand-lg bg-transparent">
     <div className="container">
       <Link to ="/" className="navbar-brand" href="index.html">
-        <img src="img/logo.jpg" className="img-fluid logo" alt="" />
+        <img src="img/booklogo2.png" className="img-fluid logo" alt="" />
       </Link>
       <button
         className="navbar-toggler"
