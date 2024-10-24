@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import api from '../../../api/api';
+import api from '../../../../api/api';
 import { uploadImageToCloudinary } from 'utiles/uploadImageToCloudinary';
 const AddRoomDialog = ({open ,setOpen}) => {
 

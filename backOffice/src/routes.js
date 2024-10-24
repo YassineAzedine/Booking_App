@@ -37,7 +37,7 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "layouts/dashboard";
-import Rooms from "layouts/tables";
+import Tables from "layouts/tables";
 import Booking from "layouts/billing";
 import RTL from "layouts/rtl";
 import Notifications from "layouts/notifications";
@@ -59,20 +59,13 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Rooms",
-    key: "rooms",
+    name: "Tables",
+    key: "tables",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/rooms",
-    component: <Rooms />,
+    route: "/tables",
+    component: <Tables />,
   },
-  {
-    type: "collapse",
-    name: "Booking",
-    key: "booking",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/booking",
-    component: <Rooms />,
-  },
+
 ];
 
 export default routes;

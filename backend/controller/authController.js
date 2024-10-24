@@ -1,76 +1,72 @@
 const User = require("../model/user")
 const bcrypt  = require("bcrypt")
 const jwt = require("jsonwebtoken")
-async function Register(req ,res){
+const asyncHandler = require('express-async-handler');
 
-
+//@des    Signup
+//@route  POST /auth/register
+//@access Public
+const Register = asyncHandler( async (req ,res) =>{
     const saltRound = 10
+
+
+    //make user Object 
 const newuser  = {
     name : req.body.name ,
     email : req.body.email ,
     password  : await bcrypt.hash(req.body.password,saltRound),
     role  : req.body.role
 }    
- try{
+
     const userExiste = await User.findOne({email : req.body.email})
 
     if(userExiste){
     return res.status(404).send({message  : "user email already existe"})      
+    //create user
     }
 const user =  await User.create(newuser)
- res.status(200).send({"message" : "User register success" ,  user})
- }catch(error){
-     console.log(error)
- }
+   // Genrate token
+       const payload = {
+        user_id : user._id
+       }
+   const token  = await jwt.sign(payload , process.env.SCRET_jwt , { expiresIn: '1h' })
+ res.status(200).send({"message" : "User register success" , data : user , token})
+})
 
-}
-async function Login(req ,res){
-    const scretjwt = "hello"
-
-  
-    
- try{
+//@des  Signin
+//@route POST /auth/login
+//@access Public
+const Login = asyncHandler(async (req ,res) => {
     //find by email
     const saltRound = 10
-    const hashpassowrd =  await bcrypt.hash(req.body.password , saltRound)
-      const userExiste = await User.findOne({email : req.body.email})
-
-
-      if (!userExiste){
-        return res.status(404).send({message : "user not found"})
-      }
-      const match = await bcrypt.compare(req.body.password, userExiste.password)
-
-      if(!match ){
-
+     //find user if exist in table users
+    const userExiste = await User.findOne({email : req.body.email})
+    if(!userExiste){
+        return res.status(404).json({message  : "user not found"})
+    }
+    
+    //compare password if correct
+    const match = await bcrypt.compare(req.body.password, userExiste.password)
+    //check if email aready exist or password  
+      if(!match || !userExiste ){
         return res.status(404).send({message : "email or password not correct "})
       }
-      
+      //create object user 
        const user = {
         id : userExiste._id ,
         name : userExiste.name ,
         email : userExiste.email,
         role : userExiste.role
-
        }
-
+       //retrun user data with token genrer
       res.status(200).send({
         message : "login succesfuly",
          user ,
-        token : await jwt.sign(user , scretjwt , { expiresIn: '1h' })
+        token : await jwt.sign(user , process.env.SCRET_jwt , { expiresIn: '1h' })
       })
+} )
 
-     //find by password
-
-
- }catch(error){
-     console.log(error)
- }
-
-}
 async function Profil(req ,res){
-
-    
  try{
 const user =  await User.findOne({_id : req.user_id})
  res.status(200).send({"message" : "Hotels Find with success" ,   user})

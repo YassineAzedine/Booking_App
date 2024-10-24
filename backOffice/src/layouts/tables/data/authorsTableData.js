@@ -62,6 +62,7 @@ const handleDelete = (roomId) => {
         <MDTypography display="block" variant="button" fontWeight="medium">
           {name}
         </MDTypography>
+        
         <MDTypography variant="caption">{email}</MDTypography>
       </MDBox>
     </MDBox>
