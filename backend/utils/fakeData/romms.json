@@ -1,0 +1,164 @@
+[
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room1_1.jpg",
+        "https://example.com/images/room1_2.jpg"
+      ],
+      "pricePerNight": 150,
+      "bedCount": 2,
+      "bathroomCount": 1,
+      "maxOccupancy": 4,
+      "isAvailable": true,
+      "ratingsAverage": 4.5,
+      "ratingsQuantity": 10,
+      "title": "Deluxe Room with Ocean View"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room2_1.jpg",
+        "https://example.com/images/room2_2.jpg"
+      ],
+      "pricePerNight": 120,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "maxOccupancy": 2,
+      "isAvailable": true,
+      "ratingsAverage": 4.0,
+      "ratingsQuantity": 5,
+      "title": "Standard Single Room"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room3_1.jpg",
+        "https://example.com/images/room3_2.jpg"
+      ],
+      "pricePerNight": 200,
+      "bedCount": 2,
+      "bathroomCount": 2,
+      "maxOccupancy": 4,
+      "isAvailable": false,
+      "ratingsAverage": 4.8,
+      "ratingsQuantity": 20,
+      "title": "Luxury Suite"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room4_1.jpg",
+        "https://example.com/images/room4_2.jpg"
+      ],
+      "pricePerNight": 180,
+      "bedCount": 2,
+      "bathroomCount": 1,
+      "maxOccupancy": 3,
+      "isAvailable": true,
+      "ratingsAverage": 4.7,
+      "ratingsQuantity": 15,
+      "title": "Elegant Double Room"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room5_1.jpg",
+        "https://example.com/images/room5_2.jpg"
+      ],
+      "pricePerNight": 90,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "maxOccupancy": 2,
+      "isAvailable": true,
+      "ratingsAverage": 4.2,
+      "ratingsQuantity": 7,
+      "title": "Cozy Queen Room"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room6_1.jpg",
+        "https://example.com/images/room6_2.jpg"
+      ],
+      "pricePerNight": 110,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "maxOccupancy": 2,
+      "isAvailable": false,
+      "ratingsAverage": 4.5,
+      "ratingsQuantity": 9,
+      "title": "Serene Standard Room"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room7_1.jpg",
+        "https://example.com/images/room7_2.jpg"
+      ],
+      "pricePerNight": 130,
+      "bedCount": 2,
+      "bathroomCount": 1,
+      "maxOccupancy": 4,
+      "isAvailable": true,
+      "ratingsAverage": 4.6,
+      "ratingsQuantity": 12,
+      "title": "Chic Family Room"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room8_1.jpg",
+        "https://example.com/images/room8_2.jpg"
+      ],
+      "pricePerNight": 250,
+      "bedCount": 2,
+      "bathroomCount": 2,
+      "maxOccupancy": 4,
+      "isAvailable": true,
+      "ratingsAverage": 5.0,
+      "ratingsQuantity": 30,
+      "title": "Presidential Suite"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room9_1.jpg",
+        "https://example.com/images/room9_2.jpg"
+      ],
+      "pricePerNight": 140,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "maxOccupancy": 3,
+      "isAvailable": true,
+      "ratingsAverage": 4.4,
+      "ratingsQuantity": 11,
+      "title": "Harmonious Twin Room"
+    },
+    {
+      "hotelName": "66f2924f97508e59ca216032",
+      
+      "imageCover": "https://res.cloudinary.com/dbnpcuzdf/image/upload/v1729864548/1_p1zBnv11CSx_EII8sB9Uaw_ptclxu.jpg",
+      "images": [
+        "https://example.com/images/room10_1.jpg",
+        "https://example.com/images/room10_2.jpg"
+      ],
+      "pricePerNight": 160,
+      "bedCount": 1,
+      "bathroomCount": 1,
+      "maxOccupancy": 2,
+      "isAvailable": true,
+      "ratingsAverage": 4.9,
+      "ratingsQuantity": 14,
+      "title": "Luxurious Single Room"
+    }
+  ]
+  
