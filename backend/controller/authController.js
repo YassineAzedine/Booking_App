@@ -29,7 +29,7 @@ const user =  await User.create(newuser)
        const payload = {
         user_id : user._id
        }
-   const token  = await jwt.sign(payload , process.env.SCRET_jwt , { expiresIn: '1h' })
+   const token  = await jwt.sign(payload , process.env.JWT_SECRET_KEY , { expiresIn: '1h' })
  res.status(200).send({"message" : "User register success" , data : user , token})
 })
 
@@ -62,7 +62,7 @@ const Login = asyncHandler(async (req ,res) => {
       res.status(200).send({
         message : "login succesfuly",
          user ,
-        token : await jwt.sign(user , process.env.SCRET_jwt , { expiresIn: '1h' })
+        token : await jwt.sign(user , process.env.JWT_SECRET_KEY ,process.env.JWT_EXPIRE_TIME )
       })
 } )
 

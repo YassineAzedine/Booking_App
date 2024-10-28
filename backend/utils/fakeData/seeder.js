@@ -4,6 +4,7 @@ require('colors');
 const mongoose = require("mongoose");
 const Room = require("../../model/room");
 
+const Booking = require("../../model/booking");
 
 
 //conncet to db
@@ -30,7 +31,9 @@ const insertData = async () => {
 //delete data from DB
 const destroyData = async () => {
     try{
-      await Room.deleteMany()
+      // await Booking.deleteMany()
+         await Room.deleteMany()
+      
       console.log("data destroy".red.inverse)
       process.exit();
     }catch(error){

@@ -1,7 +1,25 @@
 const Hotel = require("../model/hotel");
 const ApiFeatures = require("../utils/apiFeatures");
 const asyncHandler = require('express-async-handler');
+const { uploadSingleImage } = require('../midellwares/uploadImage');
+const { v4: uuidv4 } = require('uuid');
+const sharp = require('sharp');
 
+// Upload single image
+const uploadBrandImage = uploadSingleImage('image');
+// Image processing
+const resizeImage = asyncHandler(async (req, res, next) => {
+  const filename = `hotel-${uuidv4()}-${Date.now()}.jpeg`;
+
+  await sharp(req.file.buffer)
+    .resize(600, 600)
+    .toFormat('jpeg')
+    .jpeg({ quality: 95 })
+    .toFile(`uploads/hotels/${filename}`);
+    // Save image into our db 
+     req.body.image = filename;
+     next();
+}); 
 //@des Get List Of Hotels
 //@route GET /category
 //@access Public
@@ -39,7 +57,7 @@ async function FindOneHotel(req, res) {
     if (!hotel) {
       return res.status(404).send({ message: "hotel not found" });
     }
-    w;
+  
     res.status(200).send({ message: "Hotel Find with success", data: hotel });
   } catch (error) {
     console.log(error);
@@ -48,16 +66,15 @@ async function FindOneHotel(req, res) {
 //@desc create new hotel
 //@route POST /hotel
 //@access Private
-async function CreateHotel(req, res) {
-  console.log(req.body);
+const CreateHotel = asyncHandler(
+  async (req, res) => {
+      //create hotel
+      const hotel = await Hotel.create(req.body);
+      res.status(200).json({ message: "Hotel Find with success", data: hotel });
 
-  try {
-    const hotel = await Hotel.create(req.body);
-    res.status(200).send({ message: "Hotel Find with success", data: hotel });
-  } catch (error) {
-    console.log(error);
   }
-}
+) 
+
 //@des update hotel
 //@route PUT /hotel
 //@access private
@@ -104,4 +121,6 @@ module.exports = {
   CreateHotel,
   UpdateHotel,
   DeleteHotel,
+  uploadBrandImage,
+  resizeImage
 };

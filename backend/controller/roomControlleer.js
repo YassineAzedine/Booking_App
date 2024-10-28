@@ -1,11 +1,10 @@
 const Room = require("../model/room");
-const asyncHandler = require('express-async-handler');
+const asyncHandler = require("express-async-handler");
 
 const Booking = require("../model/booking");
 const ApiFeatures = require("../utils/apiFeatures");
 
-const FindAllRoom = asyncHandler( async (req, res) => {
-
+const FindAllRoom = asyncHandler(async (req, res) => {
   // const rooms = await Room.find().populate("hotelName");
   const documentsCounts = await Room.countDocuments();
   let filter = {};
@@ -23,24 +22,31 @@ const FindAllRoom = asyncHandler( async (req, res) => {
   res
     .status(200)
     .send({ results: documents.length, paginationResult, data: documents });
+});
 
-})
+//@desc get romms available
+//@route GET /rooms/available
+//@access Public
+const FindAvailableRoom = asyncHandler(async (req, res) => {
+  //find room is available equal true
+  const documentsCounts = await Room.find({ isAvailable: true })
+ 
+  
+  const apiFeatures = new ApiFeatures(Room.find({ isAvailable: true }), req.query)
+  .paginate(documentsCounts)
+  .filter()
+  .search(Room)
+  .limitFields()
+  .sort();
+  const { mongooseQuery, paginationResult } = apiFeatures;
+  const documents = await mongooseQuery;
 
-// get rooms available
-async function FindAvailableRoom(req, res) {
-  try {
-    const availableRooms = await Room.find({ isAvailable: true });
-    res.status(200).json({
-      message: "Available rooms fetched successfully",
-      data: availableRooms,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Error fetching available rooms",
-      error: error.message,
-    });
-  }
-}
+  res
+  .status(200)
+  .send({ results: documents.length, paginationResult, data: documents });
+
+});
+
 // get rooms available based with params : checkIn and checkOut and guests
 async function CkeckAvailableRoom(req, res) {
   const { checkIn, checkOut, guests } = req.query;
@@ -71,7 +77,7 @@ async function CkeckAvailableRoom(req, res) {
         requestedCheckIn >= bookingCheckOut;
 
       // If there is no overlap and the guests fit in the room, the room is available
-      if (noOverlap && guests == booking.room.maxOccupancy) {
+      if (noOverlap && guests == booking?.room?.maxOccupancy) {
         availableRooms.push(booking);
       }
     });

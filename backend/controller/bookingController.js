@@ -1,6 +1,10 @@
 const Booking = require("../model/booking");
 const Room = require("./../model/room");
+
 const mongoose = require("mongoose")
+const asyncHandler = require("express-async-handler");
+const ApiFeatures = require("../utils/apiFeatures");
+
 async function CreateBooking(req ,res){
 
     
@@ -43,17 +47,37 @@ async function CreateBooking(req ,res){
 }
 async function FindBooking (req,res){
 try{
-   const booking = await Booking.find().populate("room")
-   if(!booking){
-    return res.status(404).send({message: "Booking not found"})
-   }
-     res.status(200).send({message : "booking find with success" , data : booking})
+   const documentsCounts = await Booking.find().populate("room")
+   const apiFeatures = new ApiFeatures(Booking.find(), req.query)
+   .paginate(documentsCounts)
+   .filter()
+   .search(Booking)
+   .limitFields()
+   .sort();
+   const { mongooseQuery, paginationResult } = apiFeatures;
+   const documents = await mongooseQuery;
+   res
+     .status(200)
+     .send({ results: documents.length, paginationResult, data: documents });
 }catch(err){
     console.error(err)
     res.status(500).send({"error" : err.message})
 
 }
 }
+const  DeleteBooking = asyncHandler(
+    async (req , res )=> {
+        //recuperer id with url 
+        const { id } = req.params
+        //find id if existe and update 
+        await Booking.findOneAndDelete(id)
+ 
+
+        //return message 
+        res.json({message : "Booking deleted with success"})
+        }
+)
+
 module.exports  = {
-    CreateBooking , FindBooking
+    CreateBooking , FindBooking , DeleteBooking
 }

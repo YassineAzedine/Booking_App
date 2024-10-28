@@ -2,9 +2,9 @@
 const { required } = require("joi")
 const mongoose = require("mongoose")
 const bookingSchema = mongoose.Schema({
-  user : {type : mongoose.Types.ObjectId , ref :"User" , required : [true , 'Booking must be blong to user']},
+  // user : {type : mongoose.Types.ObjectId , ref :"User" , required : [true , 'Booking must be blong to user']},
   room : {type : mongoose.Types.ObjectId , ref : "Room"},
-  name : {type : String , required : true}  ,
+  name : {type : String , required : true} ,
   email :{type : String , required : true}  ,
   address : {type : String , required : true} ,
     Date_started  :  {type : Date , required : true} , 
