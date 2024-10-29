@@ -7,9 +7,10 @@ const {
     deleteHotelValidator,
 
   } = require('../utils/validators/hotelValidator');
+const { protect, allowedTo } = require("../controller/authController");
 const HotelRouter = express.Router()
 HotelRouter.get('/'   , FindAllHotel)
-HotelRouter.post('/' , uploadBrandImage,resizeImage,createHotelValidator ,  CreateHotel)
+HotelRouter.post('/' , protect,allowedTo('admin'), uploadBrandImage,resizeImage,createHotelValidator ,  CreateHotel)
 HotelRouter.get('/:id'  ,getHotelValidator, FindOneHotel)
 HotelRouter.put('/:id'  ,updateHotelValidator, UpdateHotel)
 HotelRouter.delete('/:id'  ,deleteHotelValidator, DeleteHotel)

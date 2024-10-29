@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const userSchema = mongoose.Schema({
   name :  {type : String , trim : true , required : [true , "name required"]} ,
-  slug : { type : String , lowercase : true} ,  
+  slug : { type : String , lowercase : true} ,    
   email : {type : String , required : [true , "email required"] , unique : true , lowercase : true} ,
   phone: String  , 
   profileImg : String , 
@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
   passwordResetCode : String , 
   passwordResetExpires : String ,
   passwordResetVerified : Boolean ,
-  role  : {type : String , enum : ['admin' , 'owner' , 'client'] , default : 'client'} ,
+  role  : {type : String , enum : ['admin' , 'owner' , 'user'] , default : 'user'} ,
   active :{
     type :Boolean ,
     default : true
